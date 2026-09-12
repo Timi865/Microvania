@@ -15,6 +15,14 @@ const DASH_TIME: float = 0.12
 var can_dash: bool = true
 var dash_timer: float = 0.0
 
+var super_dash_unlocked: bool = true
+const SUPER_DASH_SPEED: float = 280.0
+const SUPER_DASH_CHARGE_COST: float = 0.5
+var super_dash_timer: float = 0.0
+var can_super_dash: bool = true
+
+
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
