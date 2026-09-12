@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://gm447l1fvyfs"]
+
+[ext_resource type="PackedScene" uid="uid://dqmw48gxl0i0m" path="res://Scenes/character_body_2d.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://cbroy1n4x2v41" path="res://Scenes/floor.tscn" id="2_qxrlw"]
+
+[node name="Game" type="Node2D" unique_id=861263391]
+
+[node name="CharacterBody2D" parent="." unique_id=402479733 instance=ExtResource("1_ebmjs")]
+position = Vector2(-3, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=718288823]
+zoom = Vector2(2.675, 2.675)
+
+[node name="Floor" parent="." unique_id=1533753416 instance=ExtResource("2_qxrlw")]
+position = Vector2(-5, 52)
+
+[node name="Floor2" parent="." unique_id=1271680075 instance=ExtResource("2_qxrlw")]
+position = Vector2(-162, 52)
+
+[node name="Floor3" parent="." unique_id=1149454208 instance=ExtResource("2_qxrlw")]
+position = Vector2(141, 52)
