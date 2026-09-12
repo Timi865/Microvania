@@ -8,6 +8,8 @@
 script = ExtResource("1_ymxaj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=469050356]
+position = Vector2(4, 4)
+scale = Vector2(0.47, 0.47)
 shape = SubResource("RectangleShape2D_yw7hx")
 
 [node name="ColorRect" type="ColorRect" parent="CollisionShape2D" unique_id=1072303817]
