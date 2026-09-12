@@ -4,8 +4,8 @@ extends CharacterBody2D
 const MAX_SPEED: float = 150.0
 const ACCELERATION: float = 18.5
 const FRICTION: float = 22.5
-const JUMP_HEIGHT: float = -165.5
-const GRAVITY: float = 14.5
+const JUMP_HEIGHT: float = -310.0
+const GRAVITY: float = 15.5
 
 var look_dir_x: int = 1
 
@@ -18,27 +18,80 @@ var dash_timer: float = 0.0
 var super_dash_unlocked: bool = true
 const SUPER_DASH_SPEED: float = 280.0
 const SUPER_DASH_CHARGE_COST: float = 0.5
-var super_dash_timer: float = 0.0
+var super_dash_charge_timer: float = 0.0
 var can_super_dash: bool = true
 
+const spawn_visual_interval_dash: float = 0.86
+const spawn_visual_interval_super_dash: float = 0.025
+var spawn_visual_timer: float = 0.0
 
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = JUMP_HEIGHT
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("Move_left", "Move_right")
-	if direction:
-		velocity.x = direction * MAX_SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, MAX_SPEED)
+	var x_input: float = Input.get_axis("Move_left", "Move_right")
+	if dash_timer == 0.0 and super_dash_charge_timer == 0.0:
+		var velocity_weight_x: float = 1.0 - exp( -(ACCELERATION if x_input else FRICTION) * delta)
+		velocity.x = lerp(velocity.x, x_input * MAX_SPEED,velocity_weight_x)
+	
+	if x_input:
+		look_dir_x = int(x_input)
+		
+		if is_on_floor() and Input.is_action_just_pressed("Jump"):
+			velocity.y = JUMP_HEIGHT
+		velocity.y += GRAVITY
+	
+	if dash_unlocked:
+		_dash_logic(delta)
+	if super_dash_unlocked:
+		_super_dash_logic(delta)
+	
+	if is_on_floor():
+		if dash_timer == 0.0 and !can_dash:
+			can_dash = true
+		if dash_timer == 0.0 and super_dash_charge_timer == 0.0 and !can_super_dash:
+			can_super_dash = true
 
 	move_and_slide()
+	#_animation(x_input)
+
+func _dash_logic(delta: float) -> void:
+	if can_dash and Input.is_action_just_pressed("dash"):
+		can_dash = false
+		dash_timer = DASH_TIME
+		velocity.x = DASH_SPEED * look_dir_x
+		velocity.y = 0
+		
+	if dash_timer > 0.0:
+		dash_timer = max(0.0, dash_timer - delta)
+		if is_on_wall():
+			dash_timer = 0.0
+
+func _super_dash_logic(delta: float) -> void:
+	if can_super_dash and is_on_floor():
+		if Input.is_action_just_pressed("Super_dash"):
+			velocity = Vector2.ZERO
+			super_dash_charge_timer += delta
+			if super_dash_charge_timer >= SUPER_DASH_CHARGE_COST:
+				can_super_dash = false
+				velocity.x = SUPER_DASH_SPEED * look_dir_x
+				velocity.y = 0.0
+		
+		else:
+			super_dash_charge_timer = 0.0
+	
+	if super_dash_charge_timer >= SUPER_DASH_CHARGE_COST:
+		if is_on_wall():
+			super_dash_charge_timer
+			
+	
+#func _animation(x_input: float) -> void:
+	#$sprite2D.flip_h = false if look_dir_x . 0 else true
+	
+	#if dash_timer . 0.0 or super_dash_charge_timer >= SUPER_DASH_CHARGE_COST:
+		#frame_anim.play("dash")
+	#elif is_on_floor():
+		#frame_anim.play("walk" if x_input or super_dash_charge_timer != 0.0 else "idle")
+	#else:
+		#frame_anim.play("fall" if velocity.y > 0 else "jump")
+		
+		
