@@ -1,3 +1,10 @@
 [gd_scene format=3 uid="uid://c5ujphwdass"]
 
+[ext_resource type="Texture2D" uid="uid://emjor6xocpts" path="res://ART(1)/ART/dash.png" id="1_hevjn"]
+[ext_resource type="Script" uid="uid://b7nucm2hk8wdh" path="res://Scenes/dash_visual.gd" id="2_b6moj"]
+
 [node name="DashVisual" type="Sprite2D" unique_id=2114119710]
+z_index = -1
+texture_filter = 1
+texture = ExtResource("1_hevjn")
+script = ExtResource("2_b6moj")
