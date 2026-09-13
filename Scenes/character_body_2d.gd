@@ -11,7 +11,7 @@ const GRAVITY: float = 16.5
 
 var look_dir_x: int = 1
 
-var dash_unlocked: bool = true
+var dash_unlocked: bool = false#set to true later
 const DASH_SPEED: float = 200
 const DASH_TIME: float = 0.12
 var can_dash: bool = true
