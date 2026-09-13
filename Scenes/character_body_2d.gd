@@ -25,7 +25,7 @@ var spawn_visual_timer: float = 0.0
 
 func _physics_process(delta: float) -> void:
 	var x_input: float = Input.get_axis("Move_left", "Move_right")
-	if dash_timer == 0.0:
+	if dash_timer <= 0.0:
 		var velocity_weight_x: float = 1.0 - exp( -(ACCELERATION if x_input else FRICTION) * delta)
 		velocity.x = lerp(velocity.x, x_input * MAX_SPEED,velocity_weight_x)
 	
