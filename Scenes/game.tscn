@@ -153,7 +153,6 @@ position = Vector2(-3, 1)
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=718288823]
 position = Vector2(3, -1)
 zoom = Vector2(5.355, 5.355)
-position_smoothing_enabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1276025541]
 texture_filter = 1
