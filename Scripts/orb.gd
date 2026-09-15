@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time += delta
 
-	var player = get_parent().get_parent()
+	var player = get_parent().get_parent()#this gets the grandparent node(player). This is quite Fragile though so ill have to do something more secure later
 
 	var target_position := start_position
 

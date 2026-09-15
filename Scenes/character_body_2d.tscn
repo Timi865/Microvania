@@ -25,4 +25,5 @@ offset_bottom = 16.276594
 script = ExtResource("2_it8n0")
 
 [node name="Orb" parent="OrbManager" unique_id=915681463 instance=ExtResource("2_88kja")]
-position = Vector2(2, -14)
+position = Vector2(2, -19)
+physics_reaction = 0.05
