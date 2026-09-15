@@ -18,3 +18,5 @@ offset_left = -8.829787
 offset_top = -15.638298
 offset_right = 8.191487
 offset_bottom = 16.276594
+
+[node name="OrbManager" type="Node2D" parent="." unique_id=285544787]
