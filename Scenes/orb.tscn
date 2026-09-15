@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cqx3471gdwhqc" path="res://Scripts/orb.gd" id="1_ryljl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw7hx"]
-radius = 9.0
+radius = 3.0
 
 [node name="Orb" type="Area2D" unique_id=915681463]
 script = ExtResource("1_ryljl")
@@ -14,4 +14,6 @@ shape = SubResource("CircleShape2D_yw7hx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1304039796]
 texture_filter = 1
+position = Vector2(-5.9604645e-08, 5.9604645e-08)
+scale = Vector2(0.34375003, 0.34375003)
 texture = ExtResource("1_caui3")
