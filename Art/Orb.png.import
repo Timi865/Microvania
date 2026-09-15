@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://emjor6xocpts"
-path="res://.godot/imported/dash.png-585054b5663b700cb5750c8eec3a2294.ctex"
+uid="uid://o5agekkkfqds"
+path="res://.godot/imported/Orb.png-0df53b80c57fbbf1d5fb5cbb2655b666.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ART(1)/ART/dash.png"
-dest_files=["res://.godot/imported/dash.png-585054b5663b700cb5750c8eec3a2294.ctex"]
+source_file="res://Art/Orb.png"
+dest_files=["res://.godot/imported/Orb.png-0df53b80c57fbbf1d5fb5cbb2655b666.ctex"]
 
 [params]
 

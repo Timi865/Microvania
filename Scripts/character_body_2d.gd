@@ -13,7 +13,7 @@ var look_dir_x: int = 1
 
 var dash_unlocked: bool = true#set to true later
 const DASH_SPEED: float = 200
-const DASH_TIME: float = 0.12
+const DASH_TIME: float = 0.3
 var can_dash: bool = true
 var dash_timer: float = 0.0
 

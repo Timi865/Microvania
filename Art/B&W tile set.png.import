@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dllsjacfyrtm7"
-path="res://.godot/imported/B&W tile set.png-3dc82985d672795128b571fe9da19367.ctex"
+path="res://.godot/imported/B&W tile set.png-3de3055d3409460b736796c9032f7fc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/B&W tile set.png"
-dest_files=["res://.godot/imported/B&W tile set.png-3dc82985d672795128b571fe9da19367.ctex"]
+source_file="res://Art/B&W tile set.png"
+dest_files=["res://.godot/imported/B&W tile set.png-3de3055d3409460b736796c9032f7fc8.ctex"]
 
 [params]
 
