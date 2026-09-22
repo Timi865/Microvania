@@ -28,5 +28,9 @@ position = Vector2(0, -19)
 physics_reaction = 0.05
 
 [node name="Orb2" parent="OrbManager" unique_id=27383065 instance=ExtResource("2_88kja")]
-position = Vector2(-16, -7)
+position = Vector2(-18, -10)
+physics_reaction = 0.05
+
+[node name="Orb3" parent="OrbManager" unique_id=167485801 instance=ExtResource("2_88kja")]
+position = Vector2(17, -10)
 physics_reaction = 0.05
