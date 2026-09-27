@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqmw48gxl0i0m"]
 
-[ext_resource type="Script" uid="uid://dh08bt053owqn" path="res://Scripts/character_body_2d.gd" id="1_ymxaj"]
+[ext_resource type="Script" uid="uid://dh08bt053owqn" path="res://Scripts/Player.gd" id="1_gntrk"]
 [ext_resource type="PackedScene" uid="uid://buykxegc7cjpf" path="res://Scenes/orb.tscn" id="2_88kja"]
 [ext_resource type="Script" uid="uid://sm5x5uuno8db" path="res://Scripts/orb_manager.gd" id="2_it8n0"]
 
@@ -8,7 +8,7 @@
 size = Vector2(16.382978, 31.276596)
 
 [node name="Player" type="CharacterBody2D" unique_id=402479733]
-script = ExtResource("1_ymxaj")
+script = ExtResource("1_gntrk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=469050356]
 scale = Vector2(0.47, 0.47)
