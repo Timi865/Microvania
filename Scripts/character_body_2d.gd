@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
 		velocity.y = JUMP_HEIGHT
 		
-	velocity.y += GRAVITY
+	velocity.y += GRAVITY * delta
 	
 	if dash_unlocked:
 		_dash_logic(delta)
