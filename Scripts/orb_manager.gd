@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var orbs: Array[Node2D] = [$Orb1, $Orb2]
+@onready var orbs: Array[Node2D] = [$Orb1, $Orb2, $Orb3]
 
 var target_position := Vector2(2, -14)
 
