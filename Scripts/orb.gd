@@ -13,13 +13,26 @@ enum state {
 
 var start_position: Vector2
 var time: float = 0.0
+var formation_position: Vector2
 
 func _ready() -> void:
 	start_position = position
 
 func _process(delta: float) -> void:
 	time += delta
+	
+	match state:
+		State.ORBITING:
+			_orbiting(delta)
+		
+		State.FLYING:
+			_flying(delta)
+			
+		State.Returning:
+			_returning(delta)
 
+
+func _orbiting(delta: float) -> void:
 	var player = get_parent().get_parent()#this gets the grandparent node(player). This is quite Fragile though so ill have to do something more secure later
 
 	var target_position := start_position
