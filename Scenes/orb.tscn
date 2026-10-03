@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://buykxegc7cjpf"]
 
-[ext_resource type="Texture2D" uid="uid://o5agekkkfqds" path="res://Art/Orb.png" id="1_caui3"]
 [ext_resource type="Script" uid="uid://cqx3471gdwhqc" path="res://Scripts/orb.gd" id="1_ryljl"]
+[ext_resource type="Texture2D" uid="uid://m6o0gedj1t1v" path="res://Art/OrbDesign2.png" id="2_ryljl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw7hx"]
 radius = 3.0
@@ -14,6 +14,6 @@ shape = SubResource("CircleShape2D_yw7hx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1304039796]
 texture_filter = 1
-position = Vector2(-5.9604645e-08, 5.9604645e-08)
-scale = Vector2(0.34375003, 0.34375003)
-texture = ExtResource("1_caui3")
+position = Vector2(7.450581e-09, -7.450581e-09)
+scale = Vector2(0.359375, 0.359375)
+texture = ExtResource("2_ryljl")
