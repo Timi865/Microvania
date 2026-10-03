@@ -52,7 +52,7 @@ func _dash_logic(delta: float) -> void:
 	if can_dash and Input.is_action_just_pressed("dash"):
 		_start_dash()
 
-	if dash_timer > 0.0:
+	if dash_timer > 0.0:#so when dash finishes
 		dash_timer = max(0.0, dash_timer - delta)
 	if is_on_wall():
 		dash_timer = 0.0
