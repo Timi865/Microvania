@@ -50,26 +50,25 @@ func _physics_process(delta: float) -> void:
 
 func _dash_logic(delta: float) -> void:
 	if can_dash and Input.is_action_just_pressed("dash"):
-		can_dash = false
-		dash_timer = DASH_TIME
-		velocity.x = DASH_SPEED * look_dir_x
-		velocity.y = 0
-		spawn_visual_timer = 0.0
-		#_spawn_dash_visual()
-	
-		
+		_start_dash()
+
 	if dash_timer > 0.0:
 		dash_timer = max(0.0, dash_timer - delta)
-		if is_on_wall():
-			dash_timer = 0.0
-		
-		spawn_visual_timer += delta
-		if spawn_visual_timer >= spawn_visual_interval_dash:
-			#_spawn_dash_visual()
-			spawn_visual_timer = 0.0
+	if is_on_wall():
+		dash_timer = 0.0
+
+	spawn_visual_timer += delta
+	if spawn_visual_timer >= spawn_visual_interval_dash:
+		spawn_visual_timer = 0.0
 
 
-
+func _start_dash() -> void:
+	can_dash = false
+	dash_timer = DASH_TIME
+	velocity.x = DASH_SPEED * look_dir_x
+	velocity.y = 0
+	spawn_visual_timer = 0.0
+	
 #func _spawn_dash_visual() -> void:
 	#var new_dash_visual: Sprite2D = DashVisual_preload.instantiate()
 	#new_dash_visual.global_position = global_position
