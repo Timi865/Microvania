@@ -1,10 +1,15 @@
 extends Area2D
 
-enum state {
+enum State {
 	ORBITING,
 	FLYING,
 	RETURNING,
 }
+
+
+var state: State = State.ORBITING# this is what Match state is "MATCHING"
+
+
 
 @export var follow_speed: float = 8.0
 @export var physics_reaction: float = 0.08
@@ -28,7 +33,7 @@ func _process(delta: float) -> void:
 		State.FLYING:
 			_flying(delta)
 			
-		State.Returning:
+		State.RETURNING:
 			_returning(delta)
 
 
@@ -45,3 +50,10 @@ func _orbiting(delta: float) -> void:
 	target_position.y += sin(time * float_speed) * float_height
 
 	position = position.lerp(target_position, follow_speed * delta)
+
+func _flying(delta: float) -> void:
+	pass
+	
+func _returning(delta: float) -> void:
+	pass
+	

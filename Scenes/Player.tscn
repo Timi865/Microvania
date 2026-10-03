@@ -32,7 +32,6 @@ float_speed = 1.0
 
 [node name="Orb2" parent="OrbManager" unique_id=27383065 instance=ExtResource("2_88kja")]
 position = Vector2(4, -20)
-follow_speed = null
 physics_reaction = 0.05
 float_height = 5.0
 float_speed = 2.0
@@ -42,4 +41,3 @@ position = Vector2(-2, -25)
 follow_speed = 9.0
 physics_reaction = 0.05
 float_height = 5.0
-float_speed = null
