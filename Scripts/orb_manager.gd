@@ -14,7 +14,7 @@ func _ready() -> void:
 		orbs[i].formation_position = target_positions[i]
 		orbs[i].position = target_positions[i]
 		
-	orbs[0].state = orbs[0].State.FLYING#changes orb1s state to FLYING
+	orbs[0].state = Orb.State.FLYING#changes orb1s state to FLYING
 
 func _process(delta: float) -> void:
 	pass

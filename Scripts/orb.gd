@@ -6,6 +6,7 @@ enum State {
 	ORBITING,
 	FLYING,
 	RETURNING,
+	HIDDEN,
 }
 
 
@@ -37,6 +38,9 @@ func _process(delta: float) -> void:
 			
 		State.RETURNING:
 			_returning(delta)
+			
+		State.HIDDEN:
+			_hidden()
 
 
 func _orbiting(delta: float) -> void:
@@ -59,3 +63,6 @@ func _flying(delta: float) -> void:
 func _returning(delta: float) -> void:
 	pass
 	
+
+func _hidden() -> void:
+	pass
