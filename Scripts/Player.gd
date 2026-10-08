@@ -27,12 +27,12 @@ var spawn_visual_timer: float = 0.0
 
 func _physics_process(delta: float) -> void:
 	var x_input: float = Input.get_axis("Move_left", "Move_right")
-	if dash_timer <= 0.0:
+	if dash_timer <= 0.0:#this is the normal player movement
 		var velocity_weight_x: float = 1.0 - exp( -(ACCELERATION if x_input else FRICTION) * delta)
-		velocity.x = lerp(velocity.x, x_input * MAX_SPEED,velocity_weight_x)
+		velocity.x = lerp(velocity.x, x_input * MAX_SPEED,velocity_weight_x)#framerate independent smooth dash bullshit
 	
 	if dash_cooldown_timer > 0.0:
-		dash_cooldown_timer -= delta#if the cooldown timer is less than zero count it down using delta
+		dash_cooldown_timer -= delta#if the cooldown timer is greater than zero count it down using delta
 	
 	if x_input:
 		look_dir_x = int(x_input)
@@ -63,9 +63,9 @@ func _dash_logic(delta: float) -> void:
 	if is_on_wall():
 		dash_timer = 0.0
 
-	spawn_visual_timer += delta
-	if spawn_visual_timer >= spawn_visual_interval_dash:
-		spawn_visual_timer = 0.0
+	#spawn_visual_timer += delta
+	#if spawn_visual_timer >= spawn_visual_interval_dash:
+		#spawn_visual_timer = 0.0
 
 
 func _start_dash() -> void:
