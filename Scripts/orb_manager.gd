@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var orbs: Array[Node2D] = [$Orb1, $Orb2, $Orb3]
+@onready var orbs: Array[Orb] = [$Orb1, $Orb2, $Orb3]#this is an array: 0,1,2
 @onready var Player: CharacterBody2D = get_parent()
 
 var target_positions := [
@@ -13,6 +13,8 @@ func _ready() -> void:
 	for i in orbs.size():
 		orbs[i].formation_position = target_positions[i]
 		orbs[i].position = target_positions[i]
+		
+	orbs[0].state = orbs[0].State.FLYING#changes orb1s state to FLYING
 
 func _process(delta: float) -> void:
 	pass

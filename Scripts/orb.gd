@@ -1,4 +1,6 @@
+class_name Orb
 extends Area2D
+
 
 enum State {
 	ORBITING,
@@ -52,7 +54,7 @@ func _orbiting(delta: float) -> void:
 	position = position.lerp(target_position, follow_speed * delta)
 
 func _flying(delta: float) -> void:
-	pass
+	position.x += 50.0 * delta
 	
 func _returning(delta: float) -> void:
 	pass
