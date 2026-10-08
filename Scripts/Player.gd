@@ -14,8 +14,10 @@ var look_dir_x: int = 1
 var dash_unlocked: bool = true#set to true later
 const DASH_SPEED: float = 200
 const DASH_TIME: float = 0.25
+const DASH_COOLDOWN: float = 0.7
 var can_dash: bool = true
 var dash_timer: float = 0.0
+var dash_cooldown_timer: float = 0.0
 
 
 const spawn_visual_interval_dash: float = 0.2
@@ -28,6 +30,9 @@ func _physics_process(delta: float) -> void:
 	if dash_timer <= 0.0:
 		var velocity_weight_x: float = 1.0 - exp( -(ACCELERATION if x_input else FRICTION) * delta)
 		velocity.x = lerp(velocity.x, x_input * MAX_SPEED,velocity_weight_x)
+	
+	if dash_cooldown_timer > 0.0:
+		dash_cooldown_timer -= delta#if the cooldown timer is less than zero count it down using delta
 	
 	if x_input:
 		look_dir_x = int(x_input)
@@ -49,7 +54,8 @@ func _physics_process(delta: float) -> void:
 	#_animation(x_input)
 
 func _dash_logic(delta: float) -> void:
-	if can_dash and Input.is_action_just_pressed("dash"):
+	if can_dash and dash_cooldown_timer <= 0.0 and Input.is_action_just_pressed("dash"):
+		dash_cooldown_timer = DASH_COOLDOWN
 		_start_dash()
 
 	if dash_timer > 0.0:#so when dash finishes

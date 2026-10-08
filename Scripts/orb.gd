@@ -58,11 +58,11 @@ func _orbiting(delta: float) -> void:
 	position = position.lerp(target_position, follow_speed * delta)
 
 func _flying(delta: float) -> void:
-	position.x += 50.0 * delta
+	pass
 	
 func _returning(delta: float) -> void:
 	pass
 	
 
 func _hidden() -> void:
-	pass
+	visible = false
