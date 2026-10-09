@@ -13,7 +13,7 @@ enum State {
 var state: State = State.ORBITING# this is what Match state is "MATCHING"
 
 
-
+@export_category("Orb")
 @export var follow_speed: float = 8.0
 @export var physics_reaction: float = 0.08
 @export var float_height: float = 2.0

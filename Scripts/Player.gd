@@ -3,24 +3,24 @@ extends CharacterBody2D
 #const DashVisual_preload = preload("res://Scenes/dash_visual.tscn")
 
 
-const MAX_SPEED: float = 90.0
-const ACCELERATION: float = 22.5
-const FRICTION: float = 28.0
-const JUMP_HEIGHT: float = -250.0
-const GRAVITY: float = 16.5
+@export var MAX_SPEED: float = 90.0
+@export var ACCELERATION: float = 22.5
+@export var FRICTION: float = 28.0
+@export var JUMP_HEIGHT: float = -250.0
+@export var GRAVITY: float = 16.5
 
 var look_dir_x: int = 1
 
 var dash_unlocked: bool = true#set to true later
-const DASH_SPEED: float = 200
-const DASH_TIME: float = 0.25
-const DASH_COOLDOWN: float = 0.7
+@export var DASH_SPEED: float = 200
+@export var DASH_TIME: float = 0.25
+@export var DASH_COOLDOWN: float = 0.7
 var can_dash: bool = true
 var dash_timer: float = 0.0
 var dash_cooldown_timer: float = 0.0
 
 
-const spawn_visual_interval_dash: float = 0.2
+@export var spawn_visual_interval_dash: float = 0.2
 var spawn_visual_timer: float = 0.0
 
 
