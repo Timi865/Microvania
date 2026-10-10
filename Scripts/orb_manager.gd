@@ -10,11 +10,16 @@ var target_positions := [
 ]
 
 func _ready() -> void:
-	for i in orbs.size():
-		orbs[i].formation_position = target_positions[i]
-		orbs[i].position = target_positions[i]
+	for orb in orbs:
+		orb.formation_position = orb.position
 		
 	
 
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("orb_throw"):
+		var direction := Vector2.RIGHT
+	
+		if Player.look_dir_x < 0:
+			direction = Vector2.LEFT
+	
+		orbs[1].launch(direction)
