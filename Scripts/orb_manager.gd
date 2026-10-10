@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var orbs: Array[Orb] = [$Orb1, $Orb2, $Orb3]#this is an array: 0,1,2
+@onready var orbs: Array[Orb] = [$Orb0, $Orb1, $Orb2]#this is an array: 0,1,2
 @onready var Player: CharacterBody2D = get_parent()
 
 var target_positions := [

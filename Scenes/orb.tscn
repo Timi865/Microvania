@@ -8,6 +8,8 @@ radius = 3.0
 
 [node name="Orb" type="Area2D" unique_id=915681463]
 script = ExtResource("1_ryljl")
+fly_duration = 0.3
+max_wall_bounces = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1756819094]
 shape = SubResource("CircleShape2D_yw7hx")
