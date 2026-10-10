@@ -90,8 +90,11 @@ func launch(direction: Vector2) -> void:
 	
 func _flying(delta: float) -> void:
 	var start_position := global_position
-	global_position += fly_direction * fly_speed * delta
-	_bounce_if_wall_hit(start_position, global_position)
+	var next_position := global_position + fly_direction * fly_speed * delta
+	
+	if not _bounce_if_wall_hit(start_position, next_position):
+		global_position = next_position
+	
 	fly_timer += delta
 
 	if fly_timer >= fly_duration:
@@ -158,18 +161,28 @@ func _try_damage_enemy(target: Node) -> bool:
 	return true
 
 
-func _bounce_if_wall_hit(from: Vector2, to: Vector2) -> void:
+func _bounce_if_wall_hit(from: Vector2, to: Vector2) -> bool:
 	if wall_bounces_left <= 0:
-		return
+		return false
 
-	var query := PhysicsRayQueryParameters2D.create(from, to)
+	var orb_radius := 4.0
+	var ray_from := from - fly_direction * orb_radius
+	var ray_to := to + fly_direction * orb_radius
+
+	var query := PhysicsRayQueryParameters2D.create(ray_from, ray_to)
 	query.collision_mask = wall_collision_mask
 	query.exclude = [self]
 
 	var hit := get_world_2d().direct_space_state.intersect_ray(query)
 	if hit.is_empty():
-		return
+		return false
 
-	global_position = hit.position
-	fly_direction = fly_direction.bounce(hit.normal).normalized()
+	var wall_normal: Vector2 = hit.normal
+	if wall_normal.length() <= 0.01:
+		state = State.RETURNING
+		return true
+
+	global_position = hit.position - fly_direction * orb_radius
+	fly_direction = fly_direction.bounce(wall_normal).normalized()
 	wall_bounces_left -= 1
+	return true
