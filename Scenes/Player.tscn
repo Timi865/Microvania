@@ -2,24 +2,70 @@
 
 [ext_resource type="Script" uid="uid://dh08bt053owqn" path="res://Scripts/Player.gd" id="1_gntrk"]
 [ext_resource type="PackedScene" uid="uid://buykxegc7cjpf" path="res://Scenes/orb.tscn" id="2_88kja"]
+[ext_resource type="Texture2D" uid="uid://c5a2uf1j1ycu3" path="res://Art/Wisp-Sheet.png" id="2_dewec"]
 [ext_resource type="Script" uid="uid://sm5x5uuno8db" path="res://Scripts/orb_manager.gd" id="2_it8n0"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ixxa"]
+atlas = ExtResource("2_dewec")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn08x"]
+atlas = ExtResource("2_dewec")
+region = Rect2(80, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52ee3"]
+atlas = ExtResource("2_dewec")
+region = Rect2(160, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhhdu"]
+atlas = ExtResource("2_dewec")
+region = Rect2(240, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_megsn"]
+atlas = ExtResource("2_dewec")
+region = Rect2(320, 0, 80, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yw7hx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ixxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn08x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52ee3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhhdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_megsn")
+}],
+"loop": 1,
+"name": &"IDLE",
+"speed": 10.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw7hx"]
-size = Vector2(16.382978, 31.276596)
+size = Vector2(18.98936, 55.31915)
 
 [node name="Player" type="CharacterBody2D" unique_id=402479733]
 script = ExtResource("1_gntrk")
 DASH_TIME = 0.75
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1033583767]
+texture_filter = 1
+position = Vector2(-1, -10)
+sprite_frames = SubResource("SpriteFrames_yw7hx")
+animation = &"IDLE"
+autoplay = "IDLE"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=469050356]
+position = Vector2(0.46250004, 1)
 scale = Vector2(0.47, 0.47)
 shape = SubResource("RectangleShape2D_yw7hx")
-
-[node name="ColorRect" type="ColorRect" parent="CollisionShape2D" unique_id=1072303817]
-offset_left = -8.829787
-offset_top = -15.638298
-offset_right = 8.191487
-offset_bottom = 16.276594
 
 [node name="OrbManager" type="Node2D" parent="." unique_id=285544787]
 script = ExtResource("2_it8n0")

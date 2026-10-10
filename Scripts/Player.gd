@@ -38,6 +38,10 @@ func _physics_process(delta: float) -> void:
 	if x_input:
 		look_dir_x = int(x_input)
 		
+	if x_input != 0:
+		$AnimatedSprite2D.flip_h = x_input < 0
+ 
+		
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
 		velocity.y = JUMP_HEIGHT
 		
