@@ -9,6 +9,7 @@ size = Vector2(16.382978, 31.276596)
 
 [node name="Player" type="CharacterBody2D" unique_id=402479733]
 script = ExtResource("1_gntrk")
+DASH_TIME = 0.75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=469050356]
 scale = Vector2(0.47, 0.47)
