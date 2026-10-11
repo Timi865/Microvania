@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	if x_input:
 		look_dir_x = int(x_input)
 		
-	if x_input != 0:
+	if x_input != 0 and dash_timer <= 0.0:
 		$AnimatedSprite2D.flip_h = x_input < 0
  
 		
@@ -53,6 +53,21 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if dash_timer == 0.0 and !can_dash:
 			can_dash = true
+			
+	if dash_timer > 0.0:
+		$AnimatedSprite2D.play("DASH")
+		
+	elif not is_on_floor():
+		pass # We'll add jump/fall animations later.
+	
+	elif x_input != 0:
+		$AnimatedSprite2D.play("RUN")
+	
+	else:
+		$AnimatedSprite2D.play("IDLE")
+
+ 
+   
 		
 
 	move_and_slide()

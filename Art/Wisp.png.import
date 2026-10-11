@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5a2uf1j1ycu3"
-path="res://.godot/imported/Wisp-Sheet.png-51c41e71272ee06772ced2f4437e4ce2.ctex"
+uid="uid://l6k6pxubtk2p"
+path="res://.godot/imported/Wisp.png-cd5b5c8925ac5e9fc0f4574a5ce3fe07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Wisp-Sheet.png"
-dest_files=["res://.godot/imported/Wisp-Sheet.png-51c41e71272ee06772ced2f4437e4ce2.ctex"]
+source_file="res://Art/Wisp.png"
+dest_files=["res://.godot/imported/Wisp.png-cd5b5c8925ac5e9fc0f4574a5ce3fe07.ctex"]
 
 [params]
 
