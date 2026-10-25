@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		pass # We'll add jump/fall animations later.
 	
 	elif x_input != 0:
-		$AnimatedSprite2D.play("RUN")
+		$AnimatedSprite2D.play("WALK")
 	
 	else:
 		$AnimatedSprite2D.play("IDLE")
