@@ -12,6 +12,9 @@ extends CharacterBody2D
 var look_dir_x: int = 1
 
 var dash_unlocked: bool = true#set to true later
+var is_ground_attacking: bool = false
+var is_air_attacking: bool = false
+var attack_number: int = 1
 @export_category("Dash")
 @export var DASH_SPEED: float = 200
 @export var DASH_TIME: float = 0.25
@@ -28,10 +31,13 @@ var spawn_visual_timer: float = 0.0
 
 func _physics_process(delta: float) -> void:
 	var x_input: float = Input.get_axis("Move_left", "Move_right")
+	var attack_speed_multiplier: float = 0.5
+	var current_max_speed = MAX_SPEED * attack_speed_multiplier if is_ground_attacking else MAX_SPEED
 	if dash_timer <= 0.0:#this is the normal player movement
 		var velocity_weight_x: float = 1.0 - exp( -(ACCELERATION if x_input else FRICTION) * delta)
-		velocity.x = lerp(velocity.x, x_input * MAX_SPEED,velocity_weight_x)#framerate independent smooth dash bullshit
-	
+		velocity.x = lerp(velocity.x, x_input * current_max_speed ,velocity_weight_x)#framerate independent smooth dash bullshit
+		
+
 	if dash_cooldown_timer > 0.0:
 		dash_cooldown_timer -= delta#if the cooldown timer is greater than zero count it down using delta
 	
@@ -45,7 +51,9 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
 		velocity.y = JUMP_HEIGHT
 		
+		
 	velocity.y += GRAVITY
+	
 	
 	if dash_unlocked:
 		_dash_logic(delta)
@@ -54,11 +62,27 @@ func _physics_process(delta: float) -> void:
 		if dash_timer == 0.0 and !can_dash:
 			can_dash = true
 			
+			
 	if dash_timer > 0.0:
 		$AnimatedSprite2D.play("DASH")
 		
+	elif is_ground_attacking:
+		if attack_number == 1:
+			$AnimatedSprite2D.play("ATTACK1")
+		else:
+			$AnimatedSprite2D.play("ATTACK2")
+	
+	elif is_air_attacking:
+		$AnimatedSprite2D.play("AIR ATTACK")
+		
+	elif is_on_floor() and is_air_attacking:
+		is_air_attacking = false
+	
+		
 	elif not is_on_floor():
-		pass # We'll add jump/fall animations later.
+		$AnimatedSprite2D.play("JUMP")
+		
+
 	
 	elif x_input != 0:
 		$AnimatedSprite2D.play("WALK")
@@ -66,9 +90,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.play("IDLE")
 
- 
-   
-		
 
 	move_and_slide()
 	#_animation(x_input)
@@ -94,6 +115,48 @@ func _start_dash() -> void:
 	velocity.x = DASH_SPEED * look_dir_x
 	velocity.y = 0
 	spawn_visual_timer = 0.0
+	
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if $AnimatedSprite2D.animation == "ATTACK1":
+		if Input.is_action_pressed("Attack"):
+			# Button is still held down, immediately play the next attack
+			attack_number = 2
+			$AnimatedSprite2D.play("ATTACK2")
+		else:
+			# Button was released, reset combo and stop attacking state
+			attack_number = 1
+			is_ground_attacking = false
+			
+	elif $AnimatedSprite2D.animation == "ATTACK2":
+		if Input.is_action_pressed("Attack"):
+			# Button is still held down, loop back to the first attack
+			attack_number = 1
+			$AnimatedSprite2D.play("ATTACK1")
+		else:
+			# Button was released, reset combo and stop attacking state
+			attack_number = 1
+			is_ground_attacking = false
+
+	# Air attack logic remains unaffected
+	if $AnimatedSprite2D.animation in ["AIR ATTACK"]:
+		is_air_attacking = false
+		
+		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Attack"):
+		if is_on_floor() and not is_ground_attacking:
+			is_ground_attacking = true
+			print("attacking")
+
+			if attack_number == 1:
+				$AnimatedSprite2D.play("ATTACK1")
+			else:
+				$AnimatedSprite2D.play("ATTACK2")
+
+		elif not is_on_floor() and not is_air_attacking:
+			is_air_attacking = true
+			print("air attacking")
+			$AnimatedSprite2D.play("AIR ATTACK")
 	
 #func _spawn_dash_visual() -> void:
 	#var new_dash_visual: Sprite2D = DashVisual_preload.instantiate()
