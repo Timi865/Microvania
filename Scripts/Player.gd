@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+@onready var animation_tree:AnimationTree = $AnimationTree
+@onready var state_machine = animation_tree.get("parameters/playback")
+
+
 #const DashVisual_preload = preload("res://Scenes/dash_visual.tscn")
 
 @export_category("Movement")
@@ -27,7 +31,8 @@ var dash_cooldown_timer: float = 0.0
 @export var spawn_visual_interval_dash: float = 0.2
 var spawn_visual_timer: float = 0.0
 
-
+func _ready() -> void:
+	animation_tree.active = true
 
 func _physics_process(delta: float) -> void:
 	var x_input: float = Input.get_axis("Move_left", "Move_right")
@@ -65,7 +70,7 @@ func _physics_process(delta: float) -> void:
 
 
 	move_and_slide()
-	#_animation(x_input)
+	_update_animation(x_input)
 
 func _dash_logic(delta: float) -> void:
 	if can_dash and dash_cooldown_timer <= 0.0 and Input.is_action_just_pressed("dash"):
@@ -89,7 +94,14 @@ func _start_dash() -> void:
 	velocity.y = 0
 	spawn_visual_timer = 0.0
 	
-	
+func _update_animation(x_input: float) -> void:
+	if !is_on_floor():
+		return
+		
+	if abs(x_input) > 0.0:
+		state_machine.travel("IDLE to WALK")
+	else:
+		state_machine.travel("IDLE")
 	
 #func _spawn_dash_visual() -> void:
 	#var new_dash_visual: Sprite2D = DashVisual_preload.instantiate()
