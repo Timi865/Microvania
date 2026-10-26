@@ -157,6 +157,7 @@ size = Vector2(18.98936, 69.14894)
 
 [node name="Player" type="CharacterBody2D" unique_id=402479733]
 script = ExtResource("1_gntrk")
+MAX_SPEED = 70.0
 DASH_SPEED = 250.0
 DASH_TIME = 0.3
 
@@ -183,18 +184,18 @@ position = Vector2(0, -23)
 script = ExtResource("2_it8n0")
 
 [node name="Orb0" parent="OrbManager" unique_id=915681463 instance=ExtResource("2_88kja")]
-position = Vector2(-6, -28)
+position = Vector2(0, -30)
 follow_speed = 9.0
 physics_reaction = 0.05
 float_speed = 1.0
 
 [node name="Orb1" parent="OrbManager" unique_id=27383065 instance=ExtResource("2_88kja")]
-position = Vector2(1, -30)
+position = Vector2(13, -17)
 physics_reaction = 0.05
 float_speed = 2.0
 
 [node name="Orb2" parent="OrbManager" unique_id=167485801 instance=ExtResource("2_88kja")]
-position = Vector2(-4, -35)
+position = Vector2(-15, -15)
 follow_speed = 9.0
 physics_reaction = 0.05
 float_height = 3.0
