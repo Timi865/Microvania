@@ -62,36 +62,6 @@ func _physics_process(delta: float) -> void:
 		if dash_timer == 0.0 and !can_dash:
 			can_dash = true
 			
-			
-	if dash_timer > 0.0:
-		$AnimatedSprite2D.play("DASH")
-		
-	elif is_ground_attacking:
-		if attack_number == 1:
-			$AnimatedSprite2D.play("ATTACK1")
-		else:
-			$AnimatedSprite2D.play("ATTACK2")
-	
-	elif is_air_attacking:
-		$AnimatedSprite2D.play("AIR ATTACK")
-		
-	elif is_on_floor() and is_air_attacking:
-		is_air_attacking = false
-	
-		
-	elif not is_on_floor():
-		if velocity.y < 0:
-			$AnimatedSprite2D.play("JUMP")
-		else:
-			$AnimatedSprite2D.play("FALL")
-		
-
-	
-	elif x_input != 0:
-		$AnimatedSprite2D.play("WALK")
-	
-	else:
-		$AnimatedSprite2D.play("IDLE")
 
 
 	move_and_slide()
@@ -119,47 +89,7 @@ func _start_dash() -> void:
 	velocity.y = 0
 	spawn_visual_timer = 0.0
 	
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if $AnimatedSprite2D.animation == "ATTACK1":
-		if Input.is_action_pressed("Attack"):
-			# Button is still held down, immediately play the next attack
-			attack_number = 2
-			$AnimatedSprite2D.play("ATTACK2")
-		else:
-			# Button was released, reset combo and stop attacking state
-			attack_number = 1
-			is_ground_attacking = false
-			
-	elif $AnimatedSprite2D.animation == "ATTACK2":
-		if Input.is_action_pressed("Attack"):
-			# Button is still held down, loop back to the first attack
-			attack_number = 1
-			$AnimatedSprite2D.play("ATTACK1")
-		else:
-			# Button was released, reset combo and stop attacking state
-			attack_number = 1
-			is_ground_attacking = false
-
-	# Air attack logic 
-	if $AnimatedSprite2D.animation in ["AIR ATTACK"]:
-		is_air_attacking = false
-		
-		
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Attack"):
-		if is_on_floor() and not is_ground_attacking:
-			is_ground_attacking = true
-			print("attacking")
-
-			if attack_number == 1:
-				$AnimatedSprite2D.play("ATTACK1")
-			else:
-				$AnimatedSprite2D.play("ATTACK2")
-
-		elif not is_on_floor() and not is_air_attacking:
-			is_air_attacking = true
-			print("air attacking")
-			$AnimatedSprite2D.play("AIR ATTACK")
+	
 	
 #func _spawn_dash_visual() -> void:
 	#var new_dash_visual: Sprite2D = DashVisual_preload.instantiate()
