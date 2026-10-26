@@ -80,7 +80,10 @@ func _physics_process(delta: float) -> void:
 	
 		
 	elif not is_on_floor():
-		$AnimatedSprite2D.play("JUMP")
+		if velocity.y < 0:
+			$AnimatedSprite2D.play("JUMP")
+		else:
+			$AnimatedSprite2D.play("FALL")
 		
 
 	
@@ -137,7 +140,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			attack_number = 1
 			is_ground_attacking = false
 
-	# Air attack logic remains unaffected
+	# Air attack logic 
 	if $AnimatedSprite2D.animation in ["AIR ATTACK"]:
 		is_air_attacking = false
 		

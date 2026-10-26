@@ -162,10 +162,6 @@ region = Rect2(784, 1008, 112, 112)
 atlas = ExtResource("3_5ixxa")
 region = Rect2(224, 1344, 112, 112)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_txwsf"]
-atlas = ExtResource("3_5ixxa")
-region = Rect2(0, 1456, 112, 112)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_megsn"]
 atlas = ExtResource("3_5ixxa")
 region = Rect2(0, 0, 112, 112)
@@ -303,7 +299,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"AIR ATTACK",
-"speed": 20.0
+"speed": 35.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -389,9 +385,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ujsok")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_txwsf")
 }],
 "loop": 0,
 "name": &"FALL",
