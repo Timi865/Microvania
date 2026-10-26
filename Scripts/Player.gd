@@ -97,11 +97,19 @@ func _start_dash() -> void:
 func _update_animation(x_input: float) -> void:
 	if !is_on_floor():
 		return
-		
+
+	var current_state: StringName = state_machine.get_current_node()
+
 	if abs(x_input) > 0.0:
-		state_machine.travel("IDLE to WALK")
+		if current_state == &"IDLE":
+			state_machine.travel("IDLE to WALK")
+		elif current_state == &"WALK to IDLE":
+			state_machine.travel("WALK")
 	else:
-		state_machine.travel("IDLE")
+		if current_state == &"WALK":
+			state_machine.travel("WALK to IDLE")
+		elif current_state == &"IDLE to WALK":
+			state_machine.travel("IDLE")
 	
 #func _spawn_dash_visual() -> void:
 	#var new_dash_visual: Sprite2D = DashVisual_preload.instantiate()
