@@ -20,9 +20,9 @@ var state: State = State.ORBITING# this is what Match state is "MATCHING"
 @export var float_speed: float = 3.0
 
 @export_category("Boomerang")
-@export var fly_speed: float = 180
-@export var fly_duration: float = 0.35
-@export var return_speed: float = 12.0
+@export var fly_speed: float = 250
+@export var fly_duration: float = 0.2
+@export var return_speed: float = 19.0
 @export var orb_damage: int = 1
 @export var max_wall_bounces: int = 1
 @export_flags_2d_physics var wall_collision_mask: int = 1

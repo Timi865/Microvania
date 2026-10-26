@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bpjugi3t4pqnd" path="res://Art/ORBWISP-sheet.png" id="2_ryljl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw7hx"]
-radius = 6.0827627
+radius = 4.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tb7o"]
 atlas = ExtResource("2_ryljl")
@@ -65,7 +65,7 @@ shape = SubResource("CircleShape2D_yw7hx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1833820855]
 texture_filter = 1
-position = Vector2(0, -3)
-scale = Vector2(0.65266037, 0.65266055)
+position = Vector2(0.6250003, -2.4999995)
+scale = Vector2(0.4846939, 0.5135135)
 sprite_frames = SubResource("SpriteFrames_yw7hx")
 autoplay = "default"

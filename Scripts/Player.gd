@@ -19,6 +19,8 @@ var dash_unlocked: bool = true#set to true later
 var is_ground_attacking: bool = false
 var is_air_attacking: bool = false
 var attack_number: int = 1
+var previous_dash_dir: int = 1
+
 @export_category("Dash")
 @export var DASH_SPEED: float = 200
 @export var DASH_TIME: float = 0.25
@@ -36,6 +38,17 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var x_input: float = Input.get_axis("Move_left", "Move_right")
+	if dash_timer > 0.0 and x_input != 0:
+		var input_dir := int(sign(x_input))
+		velocity.y = 0
+
+		if input_dir != previous_dash_dir:
+			velocity.x = DASH_SPEED * input_dir
+			look_dir_x = input_dir
+			previous_dash_dir = input_dir
+			$Sprite2D.flip_h = input_dir < 0
+		
+		
 	var attack_speed_multiplier: float = 0.5
 	var current_max_speed = MAX_SPEED * attack_speed_multiplier if is_ground_attacking else MAX_SPEED
 	if dash_timer <= 0.0:#this is the normal player movement
@@ -77,7 +90,7 @@ func _dash_logic(delta: float) -> void:
 		dash_cooldown_timer = DASH_COOLDOWN
 		_start_dash()
 
-	if dash_timer > 0.0:#so when dash finishes
+	if dash_timer > 0.0:
 		dash_timer = max(0.0, dash_timer - delta)
 	if is_on_wall():
 		dash_timer = 0.0
@@ -93,18 +106,23 @@ func _start_dash() -> void:
 	velocity.x = DASH_SPEED * look_dir_x
 	velocity.y = 0
 	spawn_visual_timer = 0.0
+	previous_dash_dir = look_dir_x
 	
 func _update_animation(x_input: float) -> void:
 	var current_state: StringName = state_machine.get_current_node()
 
-	# Dash animation
+	# Dash animations
+	# Dash animations
 	if dash_timer > 0.0:
-		if current_state != &"RUN":
-			state_machine.travel("RUN")
+		if current_state == &"RUN TURN":
+			return
+
+		if current_state != &"DASH":
+			state_machine.travel("DASH")
 		return
 
 	# Return to movement after dashing
-	if current_state == &"RUN":
+	if current_state == &"DASH":
 		if abs(x_input) > 0.0:
 			state_machine.travel("IDLE to WALK")
 		else:
