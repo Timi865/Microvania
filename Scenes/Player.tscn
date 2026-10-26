@@ -53,22 +53,18 @@ animation = &"WALK to IDLE"
 animation = &"WALK"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ulo2v"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1iu4k"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m0x7a"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5v66d"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x63xi"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i2e8t"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qidb7"]
 advance_mode = 2
@@ -84,18 +80,18 @@ states/End/position = Vector2(1091, 94)
 states/IDLE/node = SubResource("AnimationNodeAnimation_utwlt")
 states/IDLE/position = Vector2(216.09048, 94)
 "states/IDLE to RUN/node" = SubResource("AnimationNodeAnimation_o3h8g")
-"states/IDLE to RUN/position" = Vector2(223.09045, 235)
+"states/IDLE to RUN/position" = Vector2(216.09048, 190)
 "states/IDLE to WALK/node" = SubResource("AnimationNodeAnimation_u7x0b")
 "states/IDLE to WALK/position" = Vector2(472.09045, 94)
 states/RUN/node = SubResource("AnimationNodeAnimation_arntx")
 states/RUN/position = Vector2(472.09045, 240)
 "states/RUN to IDLE/node" = SubResource("AnimationNodeAnimation_1e7my")
-"states/RUN to IDLE/position" = Vector2(693.09045, 249)
-states/Start/position = Vector2(112, 94)
+"states/RUN to IDLE/position" = Vector2(666.09045, 240)
+states/Start/position = Vector2(109, 94)
 states/WALK/node = SubResource("AnimationNodeAnimation_kih0c")
 states/WALK/position = Vector2(693.09045, 94)
 "states/WALK to IDLE/node" = SubResource("AnimationNodeAnimation_lslt6")
-"states/WALK to IDLE/position" = Vector2(702.09045, 168)
+"states/WALK to IDLE/position" = Vector2(759.09045, 190)
 transitions = ["IDLE", "IDLE to WALK", SubResource("AnimationNodeStateMachineTransition_ulo2v"), "IDLE to WALK", "WALK", SubResource("AnimationNodeStateMachineTransition_1iu4k"), "WALK", "WALK to IDLE", SubResource("AnimationNodeStateMachineTransition_m0x7a"), "IDLE", "IDLE to RUN", SubResource("AnimationNodeStateMachineTransition_5v66d"), "IDLE to RUN", "RUN", SubResource("AnimationNodeStateMachineTransition_x63xi"), "RUN", "RUN to IDLE", SubResource("AnimationNodeStateMachineTransition_i2e8t"), "WALK to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_qidb7"), "RUN to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_70hv0"), "Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_8flut")]
 graph_offset = Vector2(-439.90952, 0)
 
@@ -582,7 +578,6 @@ hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=445907616]
 libraries/ = SubResource("AnimationLibrary_qidb7")
-autoplay = &"IDLE"
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=2016999603]
 tree_root = SubResource("AnimationNodeStateMachine_yw7hx")
