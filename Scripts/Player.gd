@@ -71,9 +71,8 @@ func _physics_process(delta: float) -> void:
  
 		
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
-		var current_state: StringName = state_machine.get_current_node()
 		velocity.y = JUMP_HEIGHT
-		state_machine.travel("JUMP")
+		
 		
 		
 	velocity.y += GRAVITY
