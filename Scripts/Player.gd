@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 @onready var animation_tree:AnimationTree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+var was_on_floor: bool = false
+var is_landing: bool = false
+
 
 
 #const DashVisual_preload = preload("res://Scenes/dash_visual.tscn")
@@ -35,6 +38,7 @@ var spawn_visual_timer: float = 0.0
 
 func _ready() -> void:
 	animation_tree.active = true
+	was_on_floor = is_on_floor()
 
 func _physics_process(delta: float) -> void:
 	var x_input: float = Input.get_axis("Move_left", "Move_right")
@@ -67,7 +71,9 @@ func _physics_process(delta: float) -> void:
  
 		
 	if is_on_floor() and Input.is_action_just_pressed("Jump"):
+		var current_state: StringName = state_machine.get_current_node()
 		velocity.y = JUMP_HEIGHT
+		state_machine.travel("JUMP")
 		
 		
 	velocity.y += GRAVITY
@@ -83,7 +89,19 @@ func _physics_process(delta: float) -> void:
 
 
 	move_and_slide()
+
+	var on_floor_now: bool = is_on_floor()
+
+	if on_floor_now and !was_on_floor:
+		is_landing = true
+		state_machine.travel("LAND")
+
 	_update_animation(x_input)
+
+	if is_landing and state_machine.get_current_node() == &"IDLE":
+		is_landing = false
+
+	was_on_floor = on_floor_now
 
 func _dash_logic(delta: float) -> void:
 	if can_dash and dash_cooldown_timer <= 0.0 and Input.is_action_just_pressed("dash"):
@@ -111,18 +129,26 @@ func _start_dash() -> void:
 func _update_animation(x_input: float) -> void:
 	var current_state: StringName = state_machine.get_current_node()
 
-	# Dash animations
-	# Dash animations
+	# Dash
 	if dash_timer > 0.0:
-		if current_state == &"RUN TURN":
-			return
-
 		if current_state != &"DASH":
 			state_machine.travel("DASH")
 		return
 
-	# Return to movement after dashing
-	if current_state == &"DASH":
+	
+	# Landing animation
+	if is_landing:
+		return
+
+# Jump animation while rising
+	if !is_on_floor():
+		if velocity.y < 0.0:
+			if current_state != &"JUMP":
+				state_machine.travel("JUMP")
+		return
+
+	# Return to ground animations after landing or dashing
+	if current_state == &"DASH" or current_state == &"JUMP" or current_state == &"LAND":
 		if abs(x_input) > 0.0:
 			state_machine.travel("IDLE to WALK")
 		else:
@@ -132,8 +158,6 @@ func _update_animation(x_input: float) -> void:
 	# Don't change ground animations while airborne
 	if !is_on_floor():
 		return
-
-	current_state = state_machine.get_current_node()
 
 	if abs(x_input) > 0.0:
 		if current_state == &"IDLE":
