@@ -310,6 +310,8 @@ _data = {
 &"WALK": SubResource("Animation_i2e8t")
 }
 
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yw7hx"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8flut"]
 atlas = ExtResource("2_5ixxa")
 region = Rect2(0, 672, 112, 112)
@@ -794,6 +796,10 @@ hframes = 8
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=445907616]
 libraries/ = SubResource("AnimationLibrary_qidb7")
 autoplay = &"IDLE"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=2016999603]
+tree_root = SubResource("AnimationNodeStateMachine_yw7hx")
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1033583767]
 visible = false
