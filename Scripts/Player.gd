@@ -41,6 +41,7 @@ func _ready() -> void:
 	was_on_floor = is_on_floor()
 
 func _physics_process(delta: float) -> void:
+# ------------MAIN MOVEMENT SYSTEMS------------------#
 	var x_input: float = Input.get_axis("Move_left", "Move_right")
 	if dash_timer > 0.0 and x_input != 0:
 		var input_dir := int(sign(x_input))
@@ -52,7 +53,7 @@ func _physics_process(delta: float) -> void:
 			previous_dash_dir = input_dir
 			$Sprite2D.flip_h = input_dir < 0
 		
-		
+	
 	var attack_speed_multiplier: float = 0.5
 	var current_max_speed = MAX_SPEED * attack_speed_multiplier if is_ground_attacking else MAX_SPEED
 	if dash_timer <= 0.0:#this is the normal player movement
@@ -94,7 +95,7 @@ func _physics_process(delta: float) -> void:
 	if on_floor_now and !was_on_floor:
 		is_landing = true
 		state_machine.travel("LAND")
-
+	_handle_attack()
 	_update_animation(x_input)
 
 	if is_landing and state_machine.get_current_node() == &"IDLE":
@@ -126,7 +127,11 @@ func _start_dash() -> void:
 	previous_dash_dir = look_dir_x
 	
 func _update_animation(x_input: float) -> void:
+	
 	var current_state: StringName = state_machine.get_current_node()
+	
+	if is_ground_attacking:
+		return
 
 	# Dash
 	if dash_timer > 0.0:
@@ -185,4 +190,18 @@ func _update_animation(x_input: float) -> void:
 	#else:
 		#frame_anim.play("fall" if velocity.y > 0 else "jump")
 		
-		
+func _handle_attack() -> void:
+	if Input.is_action_just_pressed("Attack"):
+		print("Attack pressed")
+		print("Current state before:", state_machine.get_current_node())
+
+		if !is_ground_attacking and !is_landing and dash_timer <= 0.0:
+			is_ground_attacking = true
+			state_machine.travel("GROUND ATTACK 1")
+
+			print("Current state after:", state_machine.get_current_node())
+
+func _finish_attack() -> void:
+	print("Attack Finished ")
+	is_ground_attacking = false
+	

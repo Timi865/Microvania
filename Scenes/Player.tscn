@@ -8,6 +8,8 @@
 [ext_resource type="Animation" uid="uid://xaxry1varubr" path="res://Animations/IDLE to RUN.res" id="4_lslt6"]
 [ext_resource type="Animation" uid="uid://dwiwqddnxwyc6" path="res://Animations/IDLE to WALK.res" id="5_ulo2v"]
 [ext_resource type="Animation" uid="uid://dtvj10lmi7mt8" path="res://Animations/JUMP.res" id="6_1iu4k"]
+[ext_resource type="Animation" uid="uid://bbfkbiulbgw1b" path="res://Animations/GROUND ATTACK 1.res" id="6_arntx"]
+[ext_resource type="Animation" uid="uid://o4ecq1wmg8ga" path="res://Animations/GROUND ATTACK 2.res" id="7_lslt6"]
 [ext_resource type="Animation" uid="uid://bydoh08lcxq8f" path="res://Animations/LAND.res" id="7_m0x7a"]
 [ext_resource type="Animation" uid="uid://biuuh3mu0k56c" path="res://Animations/RESET.res" id="8_5v66d"]
 [ext_resource type="Animation" uid="uid://56o4s6l58q1b" path="res://Animations/RUN.res" id="9_x63xi"]
@@ -62,6 +64,8 @@ _data = {
 &"DASH": ExtResource("9_x63xi"),
 &"DASH TURN": SubResource("Animation_ulo2v"),
 &"DASH to IDLE": ExtResource("10_i2e8t"),
+&"GROUND ATTACK 1": ExtResource("6_arntx"),
+&"GROUND ATTACK 2": ExtResource("7_lslt6"),
 &"IDLE": ExtResource("3_arntx"),
 &"IDLE to DASH": ExtResource("4_lslt6"),
 &"IDLE to WALK": ExtResource("5_ulo2v"),
@@ -77,6 +81,12 @@ animation = &"DASH to IDLE"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m0x7a"]
 animation = &"DASH"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ulo2v"]
+animation = &"GROUND ATTACK 1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x63xi"]
+animation = &"GROUND ATTACK 2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5v66d"]
 animation = &"IDLE to DASH"
@@ -128,12 +138,21 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5v66d"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7x0b"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_utwlt"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yw7hx"]
 states/DASH/node = SubResource("AnimationNodeAnimation_m0x7a")
 states/DASH/position = Vector2(456.09048, 276)
 "states/DASH to IDLE/node" = SubResource("AnimationNodeAnimation_1iu4k")
 "states/DASH to IDLE/position" = Vector2(699.09045, 276)
-states/End/position = Vector2(1091, 94)
+states/End/position = Vector2(1092, 94)
+"states/GROUND ATTACK 1/node" = SubResource("AnimationNodeAnimation_ulo2v")
+"states/GROUND ATTACK 1/position" = Vector2(95.090485, -99)
+"states/GROUND ATTACK 2/node" = SubResource("AnimationNodeAnimation_x63xi")
+"states/GROUND ATTACK 2/position" = Vector2(-339.90952, 290)
 states/IDLE/node = SubResource("AnimationNodeAnimation_utwlt")
 states/IDLE/position = Vector2(216.09048, 94)
 "states/IDLE to DASH/node" = SubResource("AnimationNodeAnimation_5v66d")
@@ -149,8 +168,8 @@ states/WALK/node = SubResource("AnimationNodeAnimation_kih0c")
 states/WALK/position = Vector2(693.09045, 94)
 "states/WALK to IDLE/node" = SubResource("AnimationNodeAnimation_lslt6")
 "states/WALK to IDLE/position" = Vector2(693.09045, 189)
-transitions = ["IDLE", "IDLE to WALK", SubResource("AnimationNodeStateMachineTransition_ulo2v"), "IDLE to WALK", "WALK", SubResource("AnimationNodeStateMachineTransition_1iu4k"), "WALK", "WALK to IDLE", SubResource("AnimationNodeStateMachineTransition_m0x7a"), "WALK to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_qidb7"), "Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_8flut"), "IDLE", "IDLE to DASH", SubResource("AnimationNodeStateMachineTransition_x63xi"), "IDLE to DASH", "DASH", SubResource("AnimationNodeStateMachineTransition_i2e8t"), "DASH", "DASH to IDLE", SubResource("AnimationNodeStateMachineTransition_70hv0"), "DASH to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_lslt6"), "JUMP", "LAND", SubResource("AnimationNodeStateMachineTransition_1e7my"), "LAND", "IDLE", SubResource("AnimationNodeStateMachineTransition_arntx"), "IDLE", "JUMP", SubResource("AnimationNodeStateMachineTransition_5v66d")]
-graph_offset = Vector2(-439.90952, 0)
+transitions = ["IDLE", "IDLE to WALK", SubResource("AnimationNodeStateMachineTransition_ulo2v"), "IDLE to WALK", "WALK", SubResource("AnimationNodeStateMachineTransition_1iu4k"), "WALK", "WALK to IDLE", SubResource("AnimationNodeStateMachineTransition_m0x7a"), "WALK to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_qidb7"), "Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_8flut"), "IDLE", "IDLE to DASH", SubResource("AnimationNodeStateMachineTransition_x63xi"), "IDLE to DASH", "DASH", SubResource("AnimationNodeStateMachineTransition_i2e8t"), "DASH", "DASH to IDLE", SubResource("AnimationNodeStateMachineTransition_70hv0"), "DASH to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_lslt6"), "JUMP", "LAND", SubResource("AnimationNodeStateMachineTransition_1e7my"), "LAND", "IDLE", SubResource("AnimationNodeStateMachineTransition_arntx"), "IDLE", "JUMP", SubResource("AnimationNodeStateMachineTransition_5v66d"), "GROUND ATTACK 1", "IDLE", SubResource("AnimationNodeStateMachineTransition_u7x0b"), "IDLE", "GROUND ATTACK 1", SubResource("AnimationNodeStateMachineTransition_utwlt")]
+graph_offset = Vector2(-598.90955, -160)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw7hx"]
 size = Vector2(18.98936, 69.14894)
@@ -158,6 +177,7 @@ size = Vector2(18.98936, 69.14894)
 [node name="Player" type="CharacterBody2D" unique_id=402479733]
 script = ExtResource("1_gntrk")
 MAX_SPEED = 70.0
+JUMP_HEIGHT = -350.0
 DASH_SPEED = 250.0
 DASH_TIME = 0.3
 
