@@ -152,7 +152,8 @@ func _update_animation(x_input: float) -> void:
 		return
 
 	# Return to ground animations after landing or dashing
-	if current_state == &"DASH" or current_state == &"JUMP" or current_state == &"LAND":
+	# Return to ground animations after landing, dashing, jumping or attacking
+	if current_state == &"DASH" or current_state == &"JUMP" or current_state == &"LAND" or current_state == &"GROUND ATTACK 1":
 		if abs(x_input) > 0.0:
 			state_machine.travel("IDLE to WALK")
 		else:
@@ -160,8 +161,8 @@ func _update_animation(x_input: float) -> void:
 		return
 
 	# Don't change ground animations while airborne
-	if !is_on_floor():
-		return
+		if !is_on_floor():
+			return
 
 	if abs(x_input) > 0.0:
 		if current_state == &"IDLE":

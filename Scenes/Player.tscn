@@ -131,17 +131,14 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lslt6"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1e7my"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5v66d"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7x0b"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_arntx"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5v66d"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7x0b"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_utwlt"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1e7my"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yw7hx"]
 states/DASH/node = SubResource("AnimationNodeAnimation_m0x7a")
@@ -168,8 +165,8 @@ states/WALK/node = SubResource("AnimationNodeAnimation_kih0c")
 states/WALK/position = Vector2(693.09045, 94)
 "states/WALK to IDLE/node" = SubResource("AnimationNodeAnimation_lslt6")
 "states/WALK to IDLE/position" = Vector2(693.09045, 189)
-transitions = ["IDLE", "IDLE to WALK", SubResource("AnimationNodeStateMachineTransition_ulo2v"), "IDLE to WALK", "WALK", SubResource("AnimationNodeStateMachineTransition_1iu4k"), "WALK", "WALK to IDLE", SubResource("AnimationNodeStateMachineTransition_m0x7a"), "WALK to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_qidb7"), "Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_8flut"), "IDLE", "IDLE to DASH", SubResource("AnimationNodeStateMachineTransition_x63xi"), "IDLE to DASH", "DASH", SubResource("AnimationNodeStateMachineTransition_i2e8t"), "DASH", "DASH to IDLE", SubResource("AnimationNodeStateMachineTransition_70hv0"), "DASH to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_lslt6"), "JUMP", "LAND", SubResource("AnimationNodeStateMachineTransition_1e7my"), "LAND", "IDLE", SubResource("AnimationNodeStateMachineTransition_arntx"), "IDLE", "JUMP", SubResource("AnimationNodeStateMachineTransition_5v66d"), "GROUND ATTACK 1", "IDLE", SubResource("AnimationNodeStateMachineTransition_u7x0b"), "IDLE", "GROUND ATTACK 1", SubResource("AnimationNodeStateMachineTransition_utwlt")]
-graph_offset = Vector2(-598.90955, -160)
+transitions = ["IDLE", "IDLE to WALK", SubResource("AnimationNodeStateMachineTransition_ulo2v"), "IDLE to WALK", "WALK", SubResource("AnimationNodeStateMachineTransition_1iu4k"), "WALK", "WALK to IDLE", SubResource("AnimationNodeStateMachineTransition_m0x7a"), "WALK to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_qidb7"), "Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_8flut"), "IDLE", "IDLE to DASH", SubResource("AnimationNodeStateMachineTransition_x63xi"), "IDLE to DASH", "DASH", SubResource("AnimationNodeStateMachineTransition_i2e8t"), "DASH", "DASH to IDLE", SubResource("AnimationNodeStateMachineTransition_70hv0"), "DASH to IDLE", "IDLE", SubResource("AnimationNodeStateMachineTransition_lslt6"), "IDLE", "JUMP", SubResource("AnimationNodeStateMachineTransition_5v66d"), "GROUND ATTACK 1", "IDLE", SubResource("AnimationNodeStateMachineTransition_u7x0b"), "LAND", "IDLE", SubResource("AnimationNodeStateMachineTransition_arntx"), "JUMP", "LAND", SubResource("AnimationNodeStateMachineTransition_1e7my")]
+graph_offset = Vector2(-314.90955, 311)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw7hx"]
 size = Vector2(18.98936, 69.14894)
