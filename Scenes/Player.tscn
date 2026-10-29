@@ -174,7 +174,9 @@ size = Vector2(18.98936, 69.14894)
 [node name="Player" type="CharacterBody2D" unique_id=402479733]
 script = ExtResource("1_gntrk")
 MAX_SPEED = 70.0
-JUMP_HEIGHT = -350.0
+FRICTION = 0.0
+JUMP_HEIGHT = -400.0
+GRAVITY = 14.5
 DASH_SPEED = 250.0
 DASH_TIME = 0.3
 
